@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.stage.controller.AdminHomeController"
+      spacing="20" alignment="CENTER" >
+    <Label text="Page d'accueil administrateur" style="-fx-font-size: 24px;" />
+
+    <!-- Button to manage enterprise requests -->
+    <Button fx:id="gererDemandesButton" text="Gérer Demandes Entreprises" onAction="#ouvrirPageDemandesEntreprises" />
+
+    <!-- New button to manage all users -->
+    <Button fx:id="gererUtilisateursButton" text="Gérer Utilisateurs" onAction="#ouvrirPageGestionUtilisateurs" />
+
+    <!-- Logout button -->
+    <Button text="Déconnexion" onAction="#deconnecter" />
+</VBox>

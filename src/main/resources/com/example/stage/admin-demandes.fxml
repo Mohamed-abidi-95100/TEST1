@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stage.controller.AdminDemandesController" spacing="20" alignment="CENTER" >
+    <Label text="Demandes d'inscription des entreprises" style="-fx-font-size: 20px;" />
+
+    <!-- List of pending enterprises -->
+    <ListView fx:id="entreprisesEnAttenteListView" prefWidth="400" prefHeight="300" />
+
+    <!-- Buttons for approving or rejecting enterprises -->
+    <HBox spacing="10">
+        <Button fx:id="approuverButton" text="Approuver" onAction="#approuverEntreprise" />
+        <Button fx:id="rejeterButton" text="Rejeter" onAction="#rejeterEntreprise" />
+    </HBox>
+
+    <!-- Message label for feedback -->
+    <Label fx:id="messageLabel" text="" style="-fx-text-fill: red;" />
+</VBox>

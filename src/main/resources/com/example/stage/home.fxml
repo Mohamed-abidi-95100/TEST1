@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stage.controller.HomeController">
+    <left>
+        <VBox alignment="CENTER" spacing="20" style="-fx-background-color: #f4f4f4;">
+            <ImageView fitHeight="136.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@profile.jpg" />
+                </image>
+            </ImageView>
+            <Button text="Changer Thème" fx:id="changeThemeButton" onAction="#handleChangeTheme"/>
+        </VBox>
+    </left>
+    <TextField fx:id="nameField" promptText="Entrez votre nom" />
+    <TextField fx:id="surnameField" promptText="Entrez votre prénom" />
+    <TextField fx:id="emailField" promptText="Entrez votre email" />
+    <TextField fx:id="phoneField" promptText="Entrez votre téléphone" />
+    <TextField fx:id="addressField" promptText="Entrez votre adresse" />
+
+    <center>
+        <VBox alignment="CENTER" spacing="20">
+            <!-- Ajoutez ce Label pour afficher le message de bienvenue -->
+            <Label fx:id="bienvenueLabel" text="Bienvenue !">
+                <font>
+                    <Font name="Arial" size="24" />
+                </font>
+            </Label>
+            <Button text="Modifier Profil" fx:id="editProfileButton" onAction="#handleEditProfile" prefWidth="150"/>
+            <Button text="Créer CV" fx:id="createCVButton" onAction="#handleCreateCV" prefWidth="150"/>
+            <Button text="Entretien" fx:id="interviewButton" onAction="#handleInterview" prefWidth="150"/>
+            <Button text="Communication" fx:id="communicationButton" onAction="#handleCommunication" prefWidth="150"/>
+            <Button text="Logout" fx:id="logoutButton" onAction="#handleLogout" prefWidth="150"/>
+        </VBox>
+    </center>
+</BorderPane>

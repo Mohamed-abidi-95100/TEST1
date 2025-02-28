@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="your.package.name.SkillsController">
+
+    <!-- Section pour gérer les compétences -->
+    <VBox spacing="10" layoutX="20" layoutY="20" prefWidth="360">
+        <Label text="Skills (Compétences)" style="-fx-font-size: 18px; -fx-text-fill: red;" />
+
+        <!-- TextField pour saisir une compétence -->
+        <TextField fx:id="skillsTextField" promptText="Saisissez une compétence..." />
+
+        <!-- Boutons -->
+        <HBox spacing="10">
+            <Button text="Add Skill" onAction="#onAddSkill" />
+            <Button text="Delete Selected Skill" onAction="#onDeleteSelectedSkill" />
+        </HBox>
+
+        <!-- Liste des compétences -->
+        <ListView fx:id="skillsListView" prefHeight="200" />
+    </VBox>
+
+</AnchorPane>
