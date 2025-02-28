@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.stage.controller.AdminToutesEntreprisesController"
+      spacing="20" alignment="CENTER" >
+    <Label text="Liste de toutes les entreprises" style="-fx-font-size: 24px;" />
+
+    <!-- ListView to display all enterprises -->
+    <ListView fx:id="entreprisesListView" prefWidth="600" prefHeight="400" />
+
+    <!-- Button to go back to admin home -->
+    <Button fx:id="retourButton" text="Retour" onAction="#retournerAAdminHome" />
+</VBox>

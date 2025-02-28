@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.stage.controller.EntrepriseSignUpController"
+      spacing="10" alignment="CENTER">
+    <Label text="Inscription en tant qu'entreprise" style="-fx-font-size: 20px;" />
+
+    <!-- Username Field -->
+    <TextField fx:id="usernameField" promptText="Nom d'utilisateur" />
+
+    <!-- Email Field -->
+    <TextField fx:id="emailField" promptText="Email" />
+
+    <!-- Password Field -->
+    <PasswordField fx:id="motdepasseField" promptText="Mot de passe" />
+
+    <!-- Enterprise Name Field -->
+    <TextField fx:id="nomEntrepriseField" promptText="Nom de l'entreprise" />
+
+    <!-- Sector Field -->
+    <TextField fx:id="secteurActiviteField" promptText="Secteur d'activité" />
+
+    <!-- Address Field -->
+    <TextField fx:id="adresseField" promptText="Adresse" />
+
+    <!-- Website Field -->
+    <TextField fx:id="siteWebField" promptText="Site web" />
+
+    <!-- Description Field -->
+    <TextField fx:id="descriptionField" promptText="Description" />
+
+    <!-- Sign Up Button -->
+    <Button text="S'inscrire" onAction="#sInscrire" />
+
+    <!-- Back Button -->
+    <Button text="Retour" onAction="#retournerAuChoixInscription" />
+
+    <!-- Message Label -->
+    <Label fx:id="messageLabel" text="" style="-fx-text-fill: red;" />
+</VBox>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stage.controller.FirstPageController" spacing="20" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <!-- Welcome Label -->
+    <Label text="Bienvenue sur EsprimCareer" style="-fx-font-size: 24px;" />
+
+    <!-- Button to go directly to the login page -->
+    <Button fx:id="loginButton" text="Se connecter" onAction="#redirectToLoginPage" />
+
+    <!-- Button to create a new admin account -->
+    <Button fx:id="signUpButton" text="S'inscrire" onAction="#redirectToSignUpChoicePage" />
+</VBox>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stage.controller.entreprisehome">
+    <left>
+        <VBox alignment="CENTER" prefHeight="183.0" prefWidth="87.0" spacing="20" style="-fx-background-color: #f4f4f4;">
+            <ImageView fitHeight="136.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@profile.jpg" />
+                </image>
+            </ImageView>
+            <Button fx:id="changeThemeButton" onAction="#handleChangeTheme" text="Changer Thème" />
+        </VBox>
+    </left>
+    <TextField fx:id="nameField" promptText="Entrez votre nom" />
+    <TextField fx:id="surnameField" promptText="Entrez votre prénom" />
+    <TextField fx:id="emailField" promptText="Entrez votre email" />
+    <TextField fx:id="phoneField" promptText="Entrez votre téléphone" />
+    <TextField fx:id="addressField" promptText="Entrez votre adresse" />
+
+    <center>
+        <VBox alignment="CENTER" prefHeight="273.0" prefWidth="357.0" spacing="20">
+            <!-- Ajoutez ce Label pour afficher le message de bienvenue -->
+            <Label fx:id="bienvenueLabel" prefHeight="0.0" prefWidth="239.0" text="Bienvenue !">
+                <font>
+                    <Font name="Arial" size="24" />
+                </font>
+            </Label>
+            <Button fx:id="editProfileButton" onAction="#handleEditProfile" prefWidth="150" text="Modifier Profil" />
+            <Button fx:id="demandetButton" onAction="#handledemande" prefWidth="150" text="gerer les demandes" />
+            <Button fx:id="recrutementButton" onAction="#handlerecrutement" prefWidth="150" text="add recructement" />
+
+            <Button fx:id="logoutButton" onAction="#handleLogout" prefWidth="150" text="Logout" />
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" prefHeight="436.0" prefWidth="353.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.stage.controller.AdminController">
+    <Text style="-fx-font-size: 24px;" text="Créer un Administrateur" />
+
+    <!-- Champ Nom -->
+    <Label text="Nom :" />
+    <TextField fx:id="nomField" promptText="Entrez le nom de l'administrateur" />
+
+    <!-- Champ Email -->
+    <Label text="Email :" />
+    <TextField fx:id="emailField" promptText="Entrez l'email de l'administrateur" />
+
+    <!-- Champ Mot de Passe -->
+    <Label text="Mot de passe :" />
+    <PasswordField fx:id="motdepasseField" promptText="Entrez le mot de passe" />
+
+    <!-- Champ Prénom -->
+    <Label text="Prénom :" />
+    <TextField fx:id="prenomField" promptText="Entrez le prénom" />
+
+    <!-- Champ Nom Complet -->
+    <Label text="Nom complet :" />
+    <TextField fx:id="nomCompletField" promptText="Entrez le nom complet" />
+
+    <!-- Bouton Créer Administrateur -->
+    <Button onAction="#creerAdministrateur" text="Créer Administrateur" />
+
+    <!-- Message de Statut -->
+    <Label fx:id="messageLabel" style="-fx-text-fill: red;" />
+</VBox>
