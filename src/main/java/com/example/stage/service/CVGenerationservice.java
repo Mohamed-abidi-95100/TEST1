@@ -24,6 +24,6 @@ public class CVGenerationservice {
         cv.setLanguages(cvData.getLanguages());
         cv.setSkills(cvData.getSkills());
 
-        pdfGenerationService.generateCVPDF(cv, filePath);
+        pdfGenerationService.generatePDF(cv, filePath);
     }
 }

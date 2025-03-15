@@ -1,35 +1,34 @@
 package com.example.stage.service;
 
-import com.example.stage.model.CV;
-import com.example.stage.model.Certificate;
-import com.example.stage.model.Education;
-import com.example.stage.model.Language;
-import com.example.stage.model.Project;
-import com.example.stage.model.WorkExperience;
+import com.example.stage.model.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static org.apache.pdfbox.pdmodel.font.PDType1Font.HELVETICA;
-import static org.apache.pdfbox.pdmodel.font.PDType1Font.HELVETICA_BOLD;
-
 public class PDFGenerationService {
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public void generateCVPDF(CV cv, String filePath) throws IOException {
+    public void generatePDF(CV cv, String filePath) throws IOException {
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
 
         try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+            contentStream.setLeading(14.5f);
+
+            // Add header
             contentStream.beginText();
-            contentStream.setFont(HELVETICA_BOLD, 18);
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 24);
             contentStream.newLineAtOffset(50, 750);
             contentStream.showText("Curriculum Vitae");
             contentStream.endText();
+            contentStream.addRect(50, 745, 500, 1);
+            contentStream.stroke();
 
             int yOffset = 730;
 
@@ -49,153 +48,222 @@ public class PDFGenerationService {
 
     private int addPersonalInformation(PDPageContentStream contentStream, CV cv, int yOffset) throws IOException {
         contentStream.beginText();
-        contentStream.setFont(HELVETICA, 12);
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
         contentStream.newLineAtOffset(50, yOffset);
-        contentStream.showText("Name: " + cv.getName());
-        contentStream.newLineAtOffset(0, -15);
-        contentStream.showText("Email: " + cv.getEmail());
-        contentStream.newLineAtOffset(0, -15);
-        contentStream.showText("Phone: " + cv.getPhone());
-        contentStream.newLineAtOffset(0, -15);
-        contentStream.showText("Address: " + cv.getAddress());
-        contentStream.newLineAtOffset(0, -15);
-        contentStream.showText("LinkedIn: " + cv.getLinkedin());
-        contentStream.newLineAtOffset(0, -15);
-        contentStream.showText("Portfolio: " + cv.getPortfolio());
+
+        if (cv.getName() != null) {
+            contentStream.showText("Name: " + cv.getName());
+            contentStream.newLine();
+        }
+
+        if (cv.getEmail() != null) {
+            contentStream.showText("Email: " + cv.getEmail());
+            contentStream.newLine();
+        }
+
+        if (cv.getPhone() != null) {
+            contentStream.showText("Phone: " + cv.getPhone());
+            contentStream.newLine();
+        }
+
+        if (cv.getAddress() != null) {
+            contentStream.showText("Address: " + cv.getAddress());
+            contentStream.newLine();
+        }
+
+        if (cv.getLinkedin() != null) {
+            contentStream.showText("LinkedIn: " + cv.getLinkedin());
+            contentStream.newLine();
+        }
+
+        if (cv.getPortfolio() != null) {
+            contentStream.showText("Portfolio: " + cv.getPortfolio());
+            contentStream.newLine();
+        }
+
         contentStream.endText();
-        return yOffset - 90;
+        return yOffset - 80;
     }
 
     private int addSection(PDPageContentStream contentStream, String title, String content, int yOffset) throws IOException {
+        if (content == null || content.isEmpty()) {
+            return yOffset;
+        }
+
         contentStream.beginText();
-        contentStream.setFont(HELVETICA_BOLD, 14);
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
         contentStream.newLineAtOffset(50, yOffset);
         contentStream.showText(title);
         contentStream.endText();
 
-        yOffset -= 20;
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
+        contentStream.newLineAtOffset(50, yOffset - 15);
+        contentStream.showText(content);
+        contentStream.endText();
 
-        if (content != null && !content.isEmpty()) {
-            contentStream.beginText();
-            contentStream.setFont(HELVETICA, 12);
-            contentStream.newLineAtOffset(50, yOffset);
-            contentStream.showText(content);
-            contentStream.endText();
-            yOffset -= 20;
-        }
-        return yOffset;
+        return yOffset - 30;
     }
 
     private int addEducationSection(PDPageContentStream contentStream, List<Education> educations, int yOffset) throws IOException {
+        if (educations.isEmpty()) {
+            return yOffset;
+        }
+
         contentStream.beginText();
-        contentStream.setFont(HELVETICA_BOLD, 14);
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
         contentStream.newLineAtOffset(50, yOffset);
         contentStream.showText("Education");
         contentStream.endText();
+        yOffset -= 15;
 
-        yOffset -= 20;
-        contentStream.setFont(HELVETICA, 12);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
         for (Education education : educations) {
-            contentStream.beginText();
             contentStream.newLineAtOffset(50, yOffset);
-            contentStream.showText(education.getDegree() + ", " + education.getInstitution() + ", " + education.getGraduationDate());
-            contentStream.endText();
-            yOffset -= 20;
+            String graduationDate = education.getGraduationDate() != null ?
+                    education.getGraduationDate().format(DATE_FORMATTER) : "Present";
+            contentStream.showText(education.getDegree() + " - " + education.getInstitution() +
+                    " (" + graduationDate + ")");
+            contentStream.newLine();
+            yOffset -= 15;
         }
-        return yOffset;
+        contentStream.endText();
+        return yOffset - 15;
     }
 
     private int addWorkExperienceSection(PDPageContentStream contentStream, List<WorkExperience> workExperiences, int yOffset) throws IOException {
+        if (workExperiences.isEmpty()) {
+            return yOffset;
+        }
+
         contentStream.beginText();
-        contentStream.setFont(HELVETICA_BOLD, 14);
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
         contentStream.newLineAtOffset(50, yOffset);
         contentStream.showText("Work Experience");
         contentStream.endText();
+        yOffset -= 15;
 
-        yOffset -= 20;
-        contentStream.setFont(HELVETICA, 12);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
         for (WorkExperience workExperience : workExperiences) {
-            contentStream.beginText();
             contentStream.newLineAtOffset(50, yOffset);
-            contentStream.showText(workExperience.getJobTitle() + ", " + workExperience.getCompany() + ", " + workExperience.getDescription());
-            contentStream.endText();
-            yOffset -= 20;
+            String endDate = workExperience.getEndDate() != null ?
+                    workExperience.getEndDate().format(DATE_FORMATTER) : "Present";
+            contentStream.showText(workExperience.getJobTitle() + " - " +
+                    workExperience.getCompany() + " (" +
+                    workExperience.getStartDate().format(DATE_FORMATTER) +
+                    " - " + endDate + ")");
+            contentStream.newLineAtOffset(0, -15);
+            if (workExperience.getDescription() != null) {
+                contentStream.showText(workExperience.getDescription());
+            }
+            yOffset -= 30;
         }
-        return yOffset;
+        contentStream.endText();
+        return yOffset - 15;
     }
 
     private int addProjectsSection(PDPageContentStream contentStream, List<Project> projects, int yOffset) throws IOException {
+        if (projects.isEmpty()) {
+            return yOffset;
+        }
+
         contentStream.beginText();
-        contentStream.setFont(HELVETICA_BOLD, 14);
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
         contentStream.newLineAtOffset(50, yOffset);
         contentStream.showText("Projects");
         contentStream.endText();
+        yOffset -= 15;
 
-        yOffset -= 20;
-        contentStream.setFont(HELVETICA, 12);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
         for (Project project : projects) {
-            contentStream.beginText();
             contentStream.newLineAtOffset(50, yOffset);
-            contentStream.showText(project.getProjectName() + ", " + project.getDescription());
-            contentStream.endText();
-            yOffset -= 20;
+            contentStream.showText(project.getName());
+            contentStream.newLineAtOffset(0, -15);
+            if (project.getDescription() != null) {
+                contentStream.showText(project.getDescription());
+            }
+            yOffset -= 30;
         }
-        return yOffset;
+        contentStream.endText();
+        return yOffset - 15;
     }
 
     private int addCertificatesSection(PDPageContentStream contentStream, List<Certificate> certificates, int yOffset) throws IOException {
+        if (certificates.isEmpty()) {
+            return yOffset;
+        }
+
         contentStream.beginText();
-        contentStream.setFont(HELVETICA_BOLD, 14);
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
         contentStream.newLineAtOffset(50, yOffset);
         contentStream.showText("Certificates");
         contentStream.endText();
+        yOffset -= 15;
 
-        yOffset -= 20;
-        contentStream.setFont(HELVETICA, 12);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
         for (Certificate certificate : certificates) {
-            contentStream.beginText();
             contentStream.newLineAtOffset(50, yOffset);
-            contentStream.showText(certificate.getName() + ", " + certificate.getInstitution() + ", " + certificate.getDate());
-            contentStream.endText();
-            yOffset -= 20;
+            String dateReceived = certificate.getDateReceived() != null ?
+                    certificate.getDateReceived().format(DATE_FORMATTER) : "";
+            contentStream.showText(certificate.getName() + " - " +
+                    certificate.getInstitution() +
+                    (dateReceived.isEmpty() ? "" : " (" + dateReceived + ")"));
+            contentStream.newLine();
+            yOffset -= 15;
         }
-        return yOffset;
+        contentStream.endText();
+        return yOffset - 15;
     }
 
     private int addLanguagesSection(PDPageContentStream contentStream, List<Language> languages, int yOffset) throws IOException {
+        if (languages.isEmpty()) {
+            return yOffset;
+        }
+
         contentStream.beginText();
-        contentStream.setFont(HELVETICA_BOLD, 14);
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
         contentStream.newLineAtOffset(50, yOffset);
         contentStream.showText("Languages");
         contentStream.endText();
+        yOffset -= 15;
 
-        yOffset -= 20;
-        contentStream.setFont(HELVETICA, 12);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
         for (Language language : languages) {
-            contentStream.beginText();
             contentStream.newLineAtOffset(50, yOffset);
-            contentStream.showText(language.getName() + ", " + language.getProficiency());
-            contentStream.endText();
-            yOffset -= 20;
+            contentStream.showText(language.getName() + " - " +
+                    language.getProficiencyLevel().getDescription());
+            contentStream.newLine();
+            yOffset -= 15;
         }
-        return yOffset;
+        contentStream.endText();
+        return yOffset - 15;
     }
 
     private void addSkillsSection(PDPageContentStream contentStream, List<String> skills, int yOffset) throws IOException {
+        if (skills.isEmpty()) {
+            return;
+        }
+
         contentStream.beginText();
-        contentStream.setFont(HELVETICA_BOLD, 14);
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
         contentStream.newLineAtOffset(50, yOffset);
         contentStream.showText("Skills");
         contentStream.endText();
+        yOffset -= 15;
 
-        yOffset -= 20;
-        contentStream.setFont(HELVETICA, 12);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA, 12);
         for (String skill : skills) {
-            contentStream.beginText();
             contentStream.newLineAtOffset(50, yOffset);
             contentStream.showText(skill);
-            contentStream.endText();
-            yOffset -= 20;
+            contentStream.newLine();
+            yOffset -= 15;
         }
+        contentStream.endText();
     }
 }

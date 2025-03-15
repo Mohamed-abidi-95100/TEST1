@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stage.controller.Page1Controller">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stage.controller.Page1Controller">
     <ImageView fitHeight="109.0" fitWidth="140.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
         <image>
             <Image url="@../../../images/logo.png" />
@@ -27,6 +16,12 @@
     <ImageView fitHeight="46.0" fitWidth="119.0" layoutX="729.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
         <image>
             <Image url="@../../../images/esprim.png" />
+        </image>
+    </ImageView>
+
+    <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="231.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../../images/tunisie-removebg-preview.png" />
         </image>
     </ImageView>
 
@@ -42,35 +37,36 @@
             <VBox spacing="10">
                 <Label fx:id="personalInformationLabel" style="-fx-font-weight: bold; -fx-text-fill: #E31A22;" text="Personal Information" />
                 <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints maxWidth="104.0" minWidth="59.0" prefWidth="104.0" />
+                        <ColumnConstraints maxWidth="473.0" minWidth="428.0" prefWidth="428.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+
                     <Label fx:id="fullNameLabel" text="Full Name" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                    <TextField fx:id="nameField" prefHeight="22.0" prefWidth="471.0" text="Mohamed Abidi" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <TextField fx:id="nameField" prefHeight="22.0" prefWidth="471.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                     <Label fx:id="emailLabel" text="Email" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                    <TextField fx:id="emailField" text="mohamed.abidi@example.com" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                     <Label fx:id="phoneLabel" text="Phone" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                    <TextField fx:id="phoneField" text="+21612345678" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                     <Label fx:id="addressLabel" text="Address" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                    <TextArea fx:id="addressArea" text="123 Rue de Tunis, Tunis, Tunisia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <TextArea fx:id="addressArea" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
                     <Label fx:id="linkedinLabel" text="LinkedIn" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                    <TextField fx:id="linkedinField" text="linkedin.com/in/mohamedabidi" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <TextField fx:id="linkedinField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
                     <Label fx:id="portfolioLabel" text="Portfolio" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-                    <TextField fx:id="portfolioField" text="mohamedabidi.com" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-               <columnConstraints>
-                  <ColumnConstraints maxWidth="104.0" minWidth="59.0" prefWidth="104.0" />
-                  <ColumnConstraints maxWidth="473.0" minWidth="428.0" prefWidth="428.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-                  <RowConstraints />
-               </rowConstraints>
+                    <TextField fx:id="portfolioField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                 </GridPane>
             </VBox>
 
@@ -78,7 +74,7 @@
             <VBox spacing="10">
                 <Label fx:id="summaryObjectiveLabel" style="-fx-font-weight: bold; -fx-text-fill: #E31A22;" text="Summary / Objective" />
                 <HBox spacing="10">
-                    <TextArea fx:id="summaryArea" prefHeight="40.0" prefWidth="541.0" text="Experienced software engineer with a strong background in developing scalable web applications." />
+                    <TextArea fx:id="summaryArea" prefHeight="40.0" prefWidth="541.0" />
                     <Button onAction="#showSummaryHelp" style="-fx-background-color: #E31A22; -fx-text-fill: white;" text="ⓘ" />
                 </HBox>
             </VBox>
@@ -88,21 +84,22 @@
                 <Label fx:id="educationLabel" style="-fx-font-weight: bold; -fx-text-fill: #E31A22;" text="Education" />
                 <VBox fx:id="educationContainer" spacing="5">
                     <GridPane hgap="10" vgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints maxWidth="109.0" minWidth="93.0" prefWidth="106.0" />
+                            <ColumnConstraints maxWidth="169.0" minWidth="153.0" prefWidth="156.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                        </rowConstraints>
+
                         <Label text="Degree" GridPane.rowIndex="0" />
                         <TextField fx:id="degreeField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                         <Label text="Institution" GridPane.rowIndex="1" />
                         <TextField fx:id="institutionField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Graduation Date" GridPane.rowIndex="2" />
                         <DatePicker fx:id="graduationDateField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <columnConstraints>
-                     <ColumnConstraints maxWidth="109.0" minWidth="93.0" prefWidth="106.0" />
-                     <ColumnConstraints maxWidth="169.0" minWidth="153.0" prefWidth="156.0" />
-                  </columnConstraints>
-                  <rowConstraints>
-                     <RowConstraints />
-                     <RowConstraints />
-                     <RowConstraints />
-                  </rowConstraints>
                     </GridPane>
                 </VBox>
                 <Button fx:id="addEducationButton" onAction="#addEducation" style="-fx-background-color: #E31A22; -fx-text-fill: white;" text="Add Education" />
@@ -113,21 +110,32 @@
                 <Label fx:id="workExperienceLabel" style="-fx-font-weight: bold; -fx-text-fill: #E31A22;" text="Work Experience" />
                 <VBox fx:id="workExperienceContainer" spacing="5">
                     <GridPane hgap="10" vgap="10">
-                        <Label text="Job Title" />
-                        <TextField fx:id="jobTitleField" GridPane.columnIndex="1" />
+                        <columnConstraints>
+                            <ColumnConstraints maxWidth="109.0" minWidth="93.0" prefWidth="106.0" />
+                            <ColumnConstraints maxWidth="169.0" minWidth="153.0" prefWidth="156.0" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                            <RowConstraints />
+                        </rowConstraints>
+
+                        <Label text="Job Title" GridPane.rowIndex="0" />
+                        <TextField fx:id="jobTitleField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
                         <Label text="Company" GridPane.rowIndex="1" />
                         <TextField fx:id="companyField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Description" GridPane.rowIndex="2" />
-                        <TextArea fx:id="descriptionArea" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <columnConstraints>
-                     <ColumnConstraints />
-                     <ColumnConstraints />
-                  </columnConstraints>
-                  <rowConstraints>
-                     <RowConstraints />
-                     <RowConstraints />
-                     <RowConstraints />
-                  </rowConstraints>
+
+                        <Label text="Start Date" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="startDateField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                        <Label text="End Date" GridPane.rowIndex="3" />
+                        <DatePicker fx:id="endDateField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                        <Label text="Description" GridPane.rowIndex="4" />
+                        <TextArea fx:id="descriptionArea" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                     </GridPane>
                 </VBox>
                 <Button fx:id="addWorkExperienceButton" onAction="#addWorkExperience" style="-fx-background-color: #E31A22; -fx-text-fill: white;" text="Add Work Experience" />

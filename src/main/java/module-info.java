@@ -14,7 +14,12 @@ module com.example.stage {
     requires jbcrypt; // Pour le hachage de mots de passe
 
     requires org.apache.pdfbox;
-        // Ensure the PDFBox library (e.g., pdfbox-<version>.jar) is added to your module path or as a dependency in your build system.
+    requires okhttp3;
+    requires spring.boot;
+    requires spring.context;
+    requires org.slf4j;
+    requires java.desktop;
+    // Ensure the PDFBox library (e.g., pdfbox-<version>.jar) is added to your module path or as a dependency in your build system.
 
     opens com.example.stage to javafx.fxml, com.example.stage; // Ouvre le package principal pour les FXML et le module lui-même
     opens com.example.stage.controller to javafx.fxml, com.example.stage; // Ajoutez cette ligne pour ouvrir le package controller

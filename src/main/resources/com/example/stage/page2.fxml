@@ -4,6 +4,7 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
@@ -16,20 +17,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.DatePicker?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.stage.controller.Page2Controller">
     <!-- Images at the top -->
+    <ImageView fitHeight="109.0" fitWidth="140.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../../../images/logo.png" />
+        </image>
+    </ImageView>
+
+    <!-- Logo Image Right -->
+    <ImageView fitHeight="46.0" fitWidth="119.0" layoutX="729.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+        <image>
+            <Image url="@../../../images/esprim.png" />
+        </image>
+    </ImageView>
+
     <HBox alignment="CENTER" layoutX="557.0" layoutY="8.0" prefHeight="109.0" prefWidth="335.0" spacing="20" AnchorPane.leftAnchor="557.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
-
         <!-- Logo Image Right -->
-        <ImageView fitHeight="46.0" fitWidth="119.0" layoutX="729.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
-            <image>
-                <Image url="@../../../images/esprim.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="99.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
-
     </HBox>
 
     <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutY="126.0" prefHeight="464.0" prefWidth="888.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="126.0">
@@ -37,11 +42,15 @@
             <GridPane alignment="CENTER" hgap="10" maxWidth="Infinity" prefHeight="598.0" prefWidth="825.0" vgap="10">
                 <!-- Section: Skills -->
                 <Label fx:id="skillsLabel" style="-fx-font-weight: bold; -fx-text-fill: #E31A22;" text="Skills" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-                <HBox GridPane.columnSpan="2" GridPane.rowIndex="1">
-                    <TextField fx:id="skillsField" />
-                    <Button onAction="#showSkillsHelp" style="-fx-background-color: #E31A22; -fx-text-fill: white; -fx-font-weight: bold;" text="?" />
-                </HBox>
 
+                <!-- Add this right after the skills section header -->
+                <VBox fx:id="skillContainerList" spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                    <HBox spacing="10">
+                        <TextField fx:id="skillsField" promptText="Enter a skill"/>
+                        <Button onAction="#addSkill" style="-fx-background-color: #E31A22; -fx-text-fill: white;" text="Add Skill"/>
+                    </HBox>
+                    <VBox fx:id="skillsContainer" spacing="5"/>
+                </VBox>
                 <!-- Section: Projects -->
                 <Label fx:id="projectsLabel" style="-fx-font-weight: bold; -fx-text-fill: #E31A22;" text="Projects" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                 <VBox fx:id="projectsContainer" spacing="5" GridPane.columnSpan="2" GridPane.rowIndex="3">
@@ -100,10 +109,13 @@
                         <ComboBox fx:id="languageProficiencyField" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Beginner" />
-                                    <String fx:value="Intermediate" />
-                                    <String fx:value="Advanced" />
-                                    <String fx:value="Bilingual" />
+                                    <String fx:value="A1 (Beginner)" />      <!-- A1: Basic user, beginner level -->
+                                    <String fx:value="A2 (Elementary)" />    <!-- A2: Basic user, elementary level -->
+                                    <String fx:value="B1 (Intermediate)" />  <!-- B1: Independent user, intermediate level -->
+                                    <String fx:value="B2 (Upper Intermediate)" /> <!-- B2: Independent user, upper intermediate level -->
+                                    <String fx:value="C1 (Advanced)" />      <!-- C1: Proficient user, advanced level -->
+                                    <String fx:value="C2 (Bilingual)" />     <!-- C2: Proficient user, near-native fluency -->
+
                                 </FXCollections>
                             </items>
                         </ComboBox>
@@ -151,9 +163,10 @@
     </ScrollPane>
 
     <!-- Logo Image Left -->
-    <ImageView fitHeight="112.0" fitWidth="146.0" layoutX="-7.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+
+    <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="231.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
         <image>
-            <Image url="@../../../images/logo.png" />
+            <Image url="@../../../images/tunisie-removebg-preview.png" />
         </image>
     </ImageView>
 </AnchorPane>
