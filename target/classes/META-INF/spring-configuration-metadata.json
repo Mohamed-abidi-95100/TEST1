@@ -1,0 +1,30 @@
+{
+  "groups": [
+    {
+      "name": "huggingface",
+      "type": "com.example.stage.config.HuggingFaceConfig",
+      "sourceType": "com.example.stage.config.HuggingFaceConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "huggingface.api-key",
+      "type": "java.lang.String",
+      "sourceType": "com.example.stage.config.HuggingFaceConfig",
+      "defaultValue": "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"
+    },
+    {
+      "name": "huggingface.api-url",
+      "type": "java.lang.String",
+      "sourceType": "com.example.stage.config.HuggingFaceConfig",
+      "defaultValue": "https:\/\/api-inference.huggingface.co\/models\/"
+    },
+    {
+      "name": "huggingface.model-id",
+      "type": "java.lang.String",
+      "sourceType": "com.example.stage.config.HuggingFaceConfig",
+      "defaultValue": "gpt2"
+    }
+  ],
+  "hints": []
+}
