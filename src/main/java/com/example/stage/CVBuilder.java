@@ -12,7 +12,7 @@ public class CVBuilder extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("page1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/stage/welcome.fxml"));
         primaryStage.setTitle("CV Builder");
         primaryStage.setScene(new Scene(root, 600, 900));
         primaryStage.show();
